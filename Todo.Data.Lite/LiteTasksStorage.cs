@@ -28,7 +28,7 @@ namespace Todo.Data.Lite
 
         public void Delete(int id)
         {
-            using (var db = new LiteDatabase(@"Tasks.db"))
+            using (var db = new LiteDatabase(conncetionstring))
             {
                 var tasks = db.GetCollection<Task>("tasks");
                 tasks.Delete(x=>x.Id == id);
@@ -39,7 +39,7 @@ namespace Todo.Data.Lite
         {
             using (var db = new LiteDatabase(conncetionstring))
             {
-                var tasks = db.GetCollection<Task>("Tasks");
+                var tasks = db.GetCollection<Task>("tasks");
                 var results = tasks.Find(x => x.Id == id).FirstOrDefault();
                 return results;
             }
